@@ -33,40 +33,49 @@ string generateRandomString() {
 
 int main() {
     
-    // create tree object
-    Tree tree = Tree();
-    // reqads root node from created tree
-    node *root_node = tree.get_root_node();
+    
+    Tree tree = Tree();    //konst zove create new node
+    
+    
+    node *root_node = tree.get_root_node();   //adresu roota spremi u root_node
     
     
     
     // LEVEL 1
     // creates left and right childs for the root node
-    tree.createLeftChild(root_node, 2);
-    tree.createRightChild(root_node, 3);
+    tree.createLeftChild(root_node, 2);   //u root nodu se na left varb spremi neka nova adresa
+    tree.createRightChild(root_node, 3);     //u root nodu se na right varb spremi neka nova adresa
     
     
-    // reads left and right child of root node
-    node *nodeLeft = tree.getLeftChild(root_node);
-    node *nodeRight = tree.getRightChild(root_node);
+
+    node *nodeLeft = tree.getLeftChild(root_node);  //procita adresu od left varijable od roota i spremi u nodeLeft
+    node *nodeRight = tree.getRightChild(root_node);  //procita adresu od right varijable od roota i spremi u nodeRight
     
     
-    // LEVEL 2
-    // creates left and right childs of the left child of root node
-    tree.createLeftChild(nodeLeft, 4);
-    tree.createRightChild(nodeLeft, 5);
     
-    // create left and right childs of the right child of the root node
-    tree.createLeftChild(nodeRight, 6);
-    tree.createRightChild(nodeRight, 7);
+    
+    // LEVEL 2 (OD ROOTA DICA)
+   // DICA OD LEFT CHILDA
+    tree.createLeftChild(nodeLeft, 4);    //u left childu se na LEFT varb spremi neka nova adresa
+    tree.createRightChild(nodeLeft, 5);   //u left childu se na RIGHT varb spremi neka nova adresa
+    
+    
+    
+    
+    
+   //DICA OD RIGHT CHILDA
+    tree.createLeftChild(nodeRight, 6);     //u right childu(od roota) se na LEFT varb spremi neka nova adresa
+    tree.createRightChild(nodeRight, 7);     //u right childu(od roota) se na RIGHT varb spremi neka nova adresa
     
     
     
     // preparation for LEVEL 3
     node *temp = nodeLeft;
-    // reads left and right child of left child of the root node
-    nodeLeft = tree.getLeftChild(nodeLeft);
-    nodeRight = tree.getRightChild(temp); // temp keeps original value of nodeLeft before nodeLeft is overwritten
+    
+    nodeLeft = tree.getLeftChild(nodeLeft);   //cita adresu na left varb od nodeLeft(dite od roota) i pregazi proslu add u nodeLeft sa novon
+    nodeRight = tree.getRightChild(temp); //  //cita adresu na right varb od nodeLeft(dite od roota) koja je spremljena u temp varb
+    
+    
     
     
     // LEVEL 3

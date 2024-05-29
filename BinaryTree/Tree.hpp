@@ -11,8 +11,9 @@
 #include <stdio.h>
 
 struct node {
-    int key;
-    node *left, *right;
+    int key; // useful data
+    
+    node *left, *right; // links to neighbors
 };
 
 

@@ -19,35 +19,35 @@ Tree::~Tree() {
 }
 
 // create node
-node* Tree::create_new_node(int key) {
-    node *newNode = new node;
-    newNode->key = key;
-    newNode->left = nullptr;
-    newNode->right = nullptr;
-    return newNode;
+node* Tree::create_new_node(int k) {
+    node *newNode = new node;     //sprema adrresu na kojoj je napravljena nova struktura u varb newNode
+    newNode->key = k;        //u key iz strukture se sprema ono sta sam stavila u k
+    newNode->left = nullptr;    //nullptr jer trenutno nema dice
+    (*newNode).right = nullptr;
+    return newNode;    //vraca adresu nove struk
 }
 
 
-// returns root node of the tree
+
 node* Tree::get_root_node() {
-    return root;
+    return root;    //vraca adresu root noda
 }
 
 
 
 // creating childs
 void Tree::createLeftChild(node *parent, int key) {
-    parent->left = create_new_node(key);
+    parent->left = create_new_node(key);      //(1)root: u  left varijablu se spremi add od nove strukture(ima nullptr) i posalje se  novi key
 }
 
 void Tree::createRightChild(node *parent, int key) {
-    parent->right = create_new_node(key);
+    (*parent).right = create_new_node(key);
 }
 
 
 // reading childs
 node* Tree::getLeftChild(node *parent) {
-    return parent->left;
+    return parent->left;    //posalje add noda i on vrate sta pise na left varb u trazenon nodu
 }
 
 node* Tree::getRightChild(node *parent) {
@@ -58,16 +58,19 @@ node* Tree::getRightChild(node *parent) {
 
 
 // PRINTING
-void Tree::printInOrder(node *root) {
-    if (root == nullptr) {
-        //cout << endl;
+
+//INORDER: left,parent,right
+void Tree::printInOrder(node *currentNode) {
+    if (currentNode == nullptr) {
         return;
     }
-    printInOrder(root->left);
-    cout << root->key << " ";
-    printInOrder(root->right);
+    printInOrder(currentNode->left);     //posalje joj left child zadnjeg levela
+    cout << currentNode->key << " ";
+    printInOrder(currentNode->right);
 }
 
+
+//PREORDER: parent,left,right
 void Tree::printPreOrder(node *root) {
     if (root == nullptr) {
         return;
@@ -77,6 +80,9 @@ void Tree::printPreOrder(node *root) {
     printPreOrder(root->right);
 }
 
+
+
+//POSTORDER:left,right,parent
 void Tree::printPostOrder(node *root) {
     if (root == nullptr) {
         return;
